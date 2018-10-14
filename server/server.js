@@ -2,8 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var {mongoose} = require('./db/mongoose');
-var {Todo} = require('./models/todo');
-var {User} = require('./models/user');
+var {Model} = require('./models/model1');
 
 var app = express();
 const port = process.env.PORT || 3000;
@@ -11,15 +10,15 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.get('/',(req,res) =>{
-	res.send("HELLO" + req)
+	res.send("Hello, running on port: " + port)
 });
 
-app.post('/todos', (req, res) => {
-  var todo = new Todo({
+app.post('/model', (req, res) => {
+  var model = new Model({
     text: req.body.text
   });
 
-  todo.save().then((doc) => {
+  model.save().then((doc) => {
     res.send(doc);
   }, (error) => {
     res.status(400).send(error);
