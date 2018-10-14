@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.get('/',(req,res) =>{
-	res.send("HELLO")
+	res.send("HELLO" + req)
 });
 
 app.post('/todos', (req, res) => {
